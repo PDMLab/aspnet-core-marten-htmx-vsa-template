@@ -890,3 +890,5 @@ $RECYCLE.BIN/
 
 ### Project ###
 site.css
+database/data
+src/AspNetMartenHtmxVsa.IntegrationTests/test-database/data
