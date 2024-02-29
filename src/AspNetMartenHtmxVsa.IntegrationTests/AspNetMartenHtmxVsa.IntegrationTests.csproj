@@ -9,7 +9,6 @@
 
         <LangVersion>12</LangVersion>
 
-        <RootNamespace>AspNetMartenHtmxVsa.Tests</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>

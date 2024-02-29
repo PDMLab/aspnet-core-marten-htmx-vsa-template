@@ -2,7 +2,7 @@ using AspNetMartenHtmxVsa.EventSourcing;
 using Marten;
 using Npgsql;
 
-namespace AspNetMartenHtmxVsa.Tests.TestSetup;
+namespace AspNetMartenHtmxVsa.IntegrationTests.TestSetup;
 
 public class PostgresAdministration
 {

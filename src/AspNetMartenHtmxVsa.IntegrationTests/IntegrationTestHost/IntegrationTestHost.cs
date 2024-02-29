@@ -1,9 +1,9 @@
 using Alba;
-using AspNetMartenHtmxVsa.Tests.TestSetup;
+using AspNetMartenHtmxVsa.IntegrationTests.TestSetup;
 using Microsoft.Extensions.Configuration;
 using Xunit.Abstractions;
 
-namespace AspNetMartenHtmxVsa.Tests.IntegrationTestHost;
+namespace AspNetMartenHtmxVsa.IntegrationTests.IntegrationTestHost;
 
 public class TestConfiguration : Dictionary<string, string?>
 {

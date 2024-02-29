@@ -1,4 +1,4 @@
-namespace AspNetMartenHtmxVsa.Tests;
+namespace AspNetMartenHtmxVsa.IntegrationTests;
 
 public class UnitTest1
 {
