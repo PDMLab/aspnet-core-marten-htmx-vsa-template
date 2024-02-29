@@ -1,0 +1,12 @@
+version: "3"
+
+services:
+  database:
+    image: library/postgres:14
+    container_name: eventstoretestdb
+    environment:
+      POSTGRES_USER: 'postgres'
+      POSTGRES_PASSWORD: '123456'
+      POSTGRES_DB: 'postgres'
+    ports:
+      - "5435:5432"

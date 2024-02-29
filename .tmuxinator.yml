@@ -1,5 +1,7 @@
-name: MyRazorPagesApp
+name: AspNetMartenHtmxVsa
 root: ./
+startup_window: 2
+startup_pane: 3
 
 # Runs before everything. Use it to start daemons etc.
 on_project_start:
@@ -25,20 +27,31 @@ windows:
   - app:
       layout: even-vertical
       panes:
+        - database:
+            - printf '\033]2;%s\033\\' 'database'
+            - cd database
+            - docker-compose up
         - server:
             - printf '\033]2;%s\033\\' 'app'
-            - cd src/AspNetCoreMvcHtmx
+            - cd src/AspNetMartenHtmxVsa
             - kill -9 $(lsof -t -i tcp:5001)
             - kill -9 $(lsof -t -i tcp:5000)
             - dotnet watch run
         - workspace:
             - printf '\033]2;%s\033\\' 'app-workspace'
-            - cd src/AspNetCoreMvcHtmx
+            - cd src/AspNetMartenHtmxVsa
             - clear
+  - tests:
+      layout: even-vertical
+      panes:
+        - marten-test:
+            - printf '\033]2;%s\033\\' 'marten-test'
+            - cd src/AspNetMartenHtmxVsa.IntegrationTests/test-database
+            - docker-compose up
   - frontend:
       layout: even-vertical
       panes:
         - tailwind:
             - printf '\033]2;%s\033\\' 'vite-build'
-            - cd src/AspNetCoreMvcHtmx
+            - cd src/AspNetMartenHtmxVsa
             - npx tailwindcss -i ./wwwroot/css/input.css -o ./wwwroot/css/site.css --watch
