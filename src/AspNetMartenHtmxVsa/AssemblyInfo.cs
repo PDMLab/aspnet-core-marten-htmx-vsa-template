@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc.Razor;
 [assembly: AspMvcViewLocationFormat("~/Layouts/{0}.cshtml")]
 [assembly: AspMvcPartialViewLocationFormat("~/Features/{1}/{0}.cshtml")]
 
-namespace AspNetCoreMvcHtmx;
+namespace AspNetMartenHtmxVsa;
 
 public class FeatureFolderLocationExpander : IViewLocationExpander
 {

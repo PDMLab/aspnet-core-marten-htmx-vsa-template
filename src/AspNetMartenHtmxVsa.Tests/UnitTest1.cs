@@ -1,4 +1,4 @@
-namespace AspNetCoreMvcHtmx.Tests;
+namespace AspNetMartenHtmxVsa.Tests;
 
 public class UnitTest1
 {

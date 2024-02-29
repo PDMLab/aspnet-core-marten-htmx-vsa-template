@@ -1,5 +1,5 @@
-using AspNetCoreMvcHtmx;
-using AspNetCoreMvcHtmx.Core;
+using AspNetMartenHtmxVsa;
+using AspNetMartenHtmxVsa.Core;
 using Microsoft.AspNetCore.Mvc.Razor;
 using Serilog;
 using Serilog.Extensions.Logging;

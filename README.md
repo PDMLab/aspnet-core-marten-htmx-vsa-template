@@ -1,4 +1,4 @@
-# ASP.NET (Core)  MVC Template + HTMX + Tailwind + Vertical Slice Architecture Template (VSA)
+# ASP.NET (Core) MVC Template + MartenDB + HTMX + Tailwind + Vertical Slice Architecture Template (VSA)
 
 This is a GitHub Template for ASP.NET Core MVC using .NET 6.
 
@@ -6,6 +6,7 @@ It contains
 
 * a .NET 8 Solution configured for Vertical Slice Architecture (VSA)
 * a ASP.NET Core MVC 8 project
+* MartenDB
 * HTMX
 * HTMX .NET extensions
 * TailwindCSS 3 including hot reload (JIT)
@@ -24,7 +25,7 @@ It contains
 
 ```
 yarn install
-cd src/AspNetCoreMvcHtmx
+cd src/AspNetMartenHtmxVsa
 yarn install
 libman restore
 ```
@@ -65,20 +66,20 @@ HTMX usage is shown on the Registration view, even the password strength indicat
 
 Of course, you want to rename the projects files to match our needs.
 
-You can use these commands, e.g. `AspNetCoreMvcHtmx`  gets renamed to `MyApp`:
+You can use these commands, e.g. `AspNetMartenHtmxVsa`  gets renamed to `MyApp`:
 
 ### Rename all references inside the files
 
 #### macOS
 
 ```shell
-LC_ALL=C find . -type f -name '*.*' -not \( -path './node_modules/*' -o -path './src/AspNetCoreMvcHtmx/node_modules/*' -o -path './assets' \) -exec sed -i '' 's|AspNetCoreMvcHtmx|MyApp|g' {} \;
+LC_ALL=C find . -type f -name '*.*' -not \( -path './node_modules/*' -o -path './src/AspNetMartenHtmxVsa/node_modules/*' -o -path './assets' \) -exec sed -i '' 's|AspNetMartenHtmxVsa|MyApp|g' {} \;
 ```
 
 #### Linux
 
 ```shell
-LC_ALL=C find . -type f -name '*.*' -not \( -path './node_modules/*' -o -path './src/AspNetCoreMvcHtmx/node_modules/*' -o -path './assets' \) -exec sed -i 's/AspNetCoreMvcHtmx/MyApp/g' {} \;
+LC_ALL=C find . -type f -name '*.*' -not \( -path './node_modules/*' -o -path './src/AspNetMartenHtmxVsa/node_modules/*' -o -path './assets' \) -exec sed -i 's/AspNetMartenHtmxVsa/MyApp/g' {} \;
 ```
 
 ### Rename files and folders
@@ -86,7 +87,7 @@ LC_ALL=C find . -type f -name '*.*' -not \( -path './node_modules/*' -o -path '.
 #### macOS and Linux
 
 ```bash
-find . -depth -name "*AspNetCoreMvcHtmx*" | \
-while IFS= read -r ent; do mv $ent ${ent%AspNetCoreMvcHtmx*}MyApp${ent##*AspNetCoreMvcHtmx}; done
+find . -depth -name "*AspNetMartenHtmxVsa*" | \
+while IFS= read -r ent; do mv $ent ${ent%AspNetMartenHtmxVsa*}MyApp${ent##*AspNetMartenHtmxVsa}; done
 
 ```

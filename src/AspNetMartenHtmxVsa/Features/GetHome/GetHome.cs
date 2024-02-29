@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace AspNetCoreMvcHtmx.Features.GetHome;
+namespace AspNetMartenHtmxVsa.Features.GetHome;
 
 public class GetHomeController(ILogger<GetHomeController> logger) : Controller
 {
