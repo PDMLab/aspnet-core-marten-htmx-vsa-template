@@ -1,7 +1,6 @@
 using Alba;
 using AspNetMartenHtmxVsa.IntegrationTests.TestSetup;
 using Microsoft.Extensions.Configuration;
-using Xunit.Abstractions;
 
 namespace AspNetMartenHtmxVsa.IntegrationTests.IntegrationTestHost;
 
@@ -27,7 +26,6 @@ public class IntegrationTestHost : IDisposable
   }
 
   public static async Task<IAlbaHost> InitializeAsync(
-    ITestOutputHelper? testOutputHelper = null
   )
   {
     var testEventStore = await TestEventStore.InitializeAsync();
