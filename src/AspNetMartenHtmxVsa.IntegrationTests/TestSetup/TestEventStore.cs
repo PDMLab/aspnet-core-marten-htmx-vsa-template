@@ -22,7 +22,7 @@ public class PostgresAdministration
     await using var connection = new NpgsqlConnection();
     connection.ConnectionString = _connectionString;
     await connection.OpenAsync();
-    var command = new NpgsqlCommand(
+    using var command = new NpgsqlCommand(
       $"CREATE DATABASE {databaseName}",
       connection
     );
@@ -37,7 +37,7 @@ public class PostgresAdministration
     await using var connection = new NpgsqlConnection();
     connection.ConnectionString = _connectionString;
     await connection.OpenAsync();
-    var command = new NpgsqlCommand(
+    using var command = new NpgsqlCommand(
       $"DROP DATABASE IF EXISTS {databaseName} WITH (FORCE);",
       connection
     );
@@ -53,7 +53,7 @@ public class PostgresAdministration
     connection.ConnectionString = _connectionString;
 
     await connection.OpenAsync();
-    var command = new NpgsqlCommand(
+    using var command = new NpgsqlCommand(
       $"SELECT 1 FROM pg_database WHERE datname LIKE '{databaseName}'",
       connection
     );

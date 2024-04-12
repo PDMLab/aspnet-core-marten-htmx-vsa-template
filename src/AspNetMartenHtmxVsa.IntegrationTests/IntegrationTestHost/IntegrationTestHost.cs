@@ -14,7 +14,7 @@ public class TestConfiguration : Dictionary<string, string?>
   }
 }
 
-public class IntegrationTestHost : IDisposable
+public sealed class IntegrationTestHost : IDisposable
 {
   private IAlbaHost Host { get; init; }
   private TestEventStore EventStore { get; init; }

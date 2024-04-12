@@ -15,7 +15,8 @@ public static class LoggingRegistration
       .WriteTo.Console()
       .CreateLogger();
 
-    var dotnetILogger = new SerilogLoggerFactory(serilogLogger)
+    using var serilogLoggerFactory = new SerilogLoggerFactory(serilogLogger);
+    var dotnetILogger = serilogLoggerFactory
       .CreateLogger<Program>();
     hostBuilder.ConfigureServices(s => s.AddSingleton<ILogger>(dotnetILogger));
 
