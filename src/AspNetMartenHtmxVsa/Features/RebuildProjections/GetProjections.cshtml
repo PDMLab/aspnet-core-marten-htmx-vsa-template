@@ -1,0 +1,20 @@
+@using AspNetMartenHtmxVsa.Features
+@model IEnumerable<Marten.Events.Projections.IReadOnlyProjectionData>
+
+@{
+  Layout = "_Layout";
+}
+
+
+<aside class="px-6 pb-4 pt-6">
+  <ul class="">
+    @foreach (var projection in Model)
+    {
+      <li class="group flex items-center rounded-md px-2 py-2 text-sm font-medium cursor-pointer ext-gray-600 hover:bg-gray-50 hover:text-gray-900"
+          hx-post="@Url.RouteUrl(ApiRouteNames.RebuildProjections, new { alias = projection.ProjectionName })"
+          hx-target="#devnull">@projection.ProjectionName</li>
+    }
+  </ul>
+</aside>
+
+<div id="devnull"></div>
