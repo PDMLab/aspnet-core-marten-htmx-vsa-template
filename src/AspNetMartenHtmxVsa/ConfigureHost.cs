@@ -30,7 +30,10 @@ public class ConfigureHost
             services.AddMarten(
               options =>
               {
-                options.Connection(configuration.GetConnectionString("eventstore"));
+                var connectionString =
+                  configuration.GetConnectionString("eventstore") ??
+                  throw new ArgumentNullException($"Missing connection string 'eventstore'");
+                options.Connection(connectionString);
                 StoreConfiguration.Configure(options);
               }
             );
