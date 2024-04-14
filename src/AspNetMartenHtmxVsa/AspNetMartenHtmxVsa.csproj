@@ -23,36 +23,4 @@
         <PackageReference Include="Serilog.Sinks.Console" Version="5.0.1" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Content Remove="Areas\Identity\Pages\Account\_StatusMessage.cshtml" />
-      <Content Remove="Areas\Identity\Pages\Account\Manage\_ManageNav.cshtml" />
-      <Content Remove="Areas\Identity\Pages\Account\Manage\ExternalLogins.cshtml" />
-      <Content Remove="Areas\Identity\Pages\Account\LoginWith2fa.cshtml" />
-      <Content Remove="Areas\Identity\Pages\Account\ConfirmEmailChange.cshtml" />
-      <Content Remove="Layouts\_ValidationScriptsPartial.cshtml" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Compile Remove="Areas\Identity\Pages\Account\ResendEmailConfirmation.cshtml.cs" />
-      <Compile Remove="Areas\Identity\Pages\Account\Manage\TwoFactorAuthentication.cshtml.cs" />
-      <Compile Remove="Areas\Identity\Pages\Account\Manage\SetPassword.cshtml.cs" />
-      <Compile Remove="Migrations\IdentityDbContextModelSnapshot.cs" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <_ContentIncludedByDefault Remove="Views\Home\Index.cshtml" />
-      <_ContentIncludedByDefault Remove="Views\Home\Privacy.cshtml" />
-      <_ContentIncludedByDefault Remove="Views\Shared\Error.cshtml" />
-      <_ContentIncludedByDefault Remove="Views\Shared\_Layout.cshtml" />
-      <_ContentIncludedByDefault Remove="Views\Shared\_ValidationScriptsPartial.cshtml" />
-      <_ContentIncludedByDefault Remove="Views\_ViewImports.cshtml" />
-      <_ContentIncludedByDefault Remove="Views\_ViewStart.cshtml" />
-      <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\LICENSE" />
-      <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.js" />
-      <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.min.js" />
-      <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation-unobtrusive\LICENSE.txt" />
-      <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\LICENSE.md" />
-      <_ContentIncludedByDefault Remove="wwwroot\lib\jquery\LICENSE.txt" />
-    </ItemGroup>
-
 </Project>
