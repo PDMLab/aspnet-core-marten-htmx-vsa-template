@@ -6,5 +6,6 @@ public class GetHomeController(ILogger<GetHomeController> logger) : Controller
 {
   private readonly ILogger<GetHomeController> _logger = logger;
 
+  [HttpGet("/")]
   public IActionResult GetHome() => View();
 }
