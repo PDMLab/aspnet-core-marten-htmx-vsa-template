@@ -1,8 +1,27 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@using AspNetMartenHtmxVsa.Areas.Identity.Data
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<AppUser> UserManager
+@{
+  ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
   <h1 class="text-2xl text-gray-900">Welcome</h1>
   <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
+
+@if (User.Identity.IsAuthenticated)
+{
+  var appUser = await UserManager.GetUserAsync(User);
+
+  <div class="text-center">
+    <p>Hello @appUser.FirstName @appUser.LastName!</p>
+    <p><a href="/Identity/Account/Manage">Manage your account</a>.</p>
+  </div>
+}
+else
+{
+  <div class="text-center">
+    <p><a href="/Identity/Account/Login">Log in</a> to see your profile.</p>
+  </div>
+}

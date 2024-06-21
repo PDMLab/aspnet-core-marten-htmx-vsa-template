@@ -1,0 +1,107 @@
+@using AspNetMartenHtmxVsa.Features.Subscriptions.RegisterUser
+@model AspNetMartenHtmxVsa.Features.Subscriptions.RegisterUser.Registration
+
+@{
+  Layout = null;
+}
+
+
+<form class="space-y-6"
+      hx-action="RegisterUser"
+      hx-controller="RegisterUser"
+      hx-post
+      hx-swap="outerHTML">
+  <div class="grid grid-cols-2 gap-3">
+    <div>
+      <label asp-for="FirstName"
+             class="block text-sm font-medium text-gray-700">
+      </label>
+      <div class="mt-1">
+        <input asp-for="FirstName"
+               class="block w-full px-3 py-2 placeholder-gray-400 border border-gray-300 rounded-md shadow-sm appearance-none focus:outline-none focus:ring-turquoise-500 focus:border-turquoise-500 sm:text-sm"
+               type="text"/>
+      </div>
+    </div>
+    <div>
+      <label asp-for="LastName"
+             class="block text-sm font-medium text-gray-700">
+      </label>
+      <div class="mt-1">
+        <input asp-for="LastName"
+               class="block w-full px-3 py-2 placeholder-gray-400 border border-gray-300 rounded-md shadow-sm appearance-none focus:outline-none focus:ring-turquoise-500 focus:border-turquoise-500 sm:text-sm"
+               type="text"/>
+      </div>
+    </div>
+  </div>
+  <div>
+    <label asp-for="CompanyName"
+           class="block text-sm font-medium text-gray-700">
+    </label>
+    <div class="mt-1">
+      <input asp-for="CompanyName"
+             class="block w-full px-3 py-2 placeholder-gray-400 border border-gray-300 rounded-md shadow-sm appearance-none focus:outline-none focus:ring-turquoise-500 focus:border-turquoise-500 sm:text-sm"/>
+    </div>
+  </div>
+  <div>
+    <label asp-for="Email"
+           class="block text-sm font-medium text-gray-700">
+      Email (will be your username)
+    </label>
+    <div class="mt-1">
+      <input asp-for="Email"
+             class="block w-full px-3 py-2 placeholder-gray-400 border border-gray-300 rounded-md shadow-sm appearance-none focus:outline-none focus:ring-turquoise-500 focus:border-turquoise-500 sm:text-sm"/>
+    </div>
+  </div>
+  <div>
+    <label asp-for="Password"
+           class="block text-sm font-medium text-gray-700">
+    </label>
+    <div class="mt-1">
+      <input asp-for="Password"
+             class="block w-full px-3 py-2 placeholder-gray-400 border border-gray-300 rounded-md shadow-sm appearance-none focus:outline-none focus:ring-turquoise-500 focus:border-turquoise-500 sm:text-sm"
+             hx-action="PasswordValidation"
+             hx-controller="RegisterUser"
+             hx-post
+             hx-swap="innerHTML"
+             hx-target="#passwordstrength"
+             hx-trigger="keyup"
+             type="password"/>
+    </div>
+  </div>
+  <div id="passwordstrength">
+    @await Html.PartialAsync("~/Features/Subscriptions/RegisterUser/_PasswordStrength.cshtml", new PasswordValidation()
+           {
+             PasswordScore = null
+           })
+  </div>
+
+  <div class="flex items-center justify-between">
+    <div class="flex items-center">
+      <input asp-for="TermsAccepted"
+             class="w-4 h-4 border-gray-300 rounded text-turquoise-500 focus:ring-turquoise-500"
+             type="checkbox"/>
+      <label asp-for="TermsAccepted"
+             class="block ml-2 text-sm text-gray-900">
+        I agree to the terms and conditions
+      </label>
+    </div>
+  </div>
+  <div asp-validation-summary="All">
+  </div>
+  <div>
+    <button class="flex justify-center w-full px-4 py-2 text-sm font-medium text-white border border-transparent rounded-md shadow-sm bg-turquoise-500 hover:bg-turquoise-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-turquoise-500 disabled:opacity-50 disabled:cursor-not-allowed"
+            type="submit">
+      Register
+    </button>
+  </div>
+  <div>
+    <p>
+      Already a user?
+      <a class="text-turquoise-500 hover:text-turquoise-300"
+         href="/Identity/Account/Login">
+        Sign in now
+      </a>
+    </p>
+  </div>
+
+</form>

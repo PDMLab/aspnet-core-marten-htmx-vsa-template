@@ -1,0 +1,236 @@
+﻿@page
+@using Htmx.TagHelpers
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@using static AspNetMartenHtmxVsa.Core.Constants
+@model LoginModel
+
+@{
+  ViewData["Title"] = "Sign in";
+  Layout = null;
+}
+
+<!DOCTYPE html >
+
+<html lang="de">
+
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0"
+        name="viewport"/>
+  <meta includeAspNetAntiforgeryToken="true"
+        name="htmx-config"/>
+  <title>
+    @(
+    string.IsNullOrEmpty(
+      ViewData["Title"]
+        ?.ToString()
+    )
+      ? AppName
+      : $"{ViewData["Title"]} - {AppName}"
+    )
+  </title>
+
+
+  <script src="~/lib/htmx.org/dist/htmx.min.js"></script>
+  <link asp-append-version="true"
+        href="~/css/site.css"
+        rel="stylesheet"/>
+</head>
+<body class="debug-screens"
+      id="target">
+
+<div class="flex flex-col justify-center min-h-screen py-12 bg-gray-50 sm:px-6 lg:px-8">
+  <div class="sm:mx-auto sm:w-full sm:max-w-md">
+    <div class="flex justify-center items-center">
+      <img alt="@AppName Logo"
+           class="w-auto h-12"
+           src="~/img/logo-outline.svg"/>
+      <div class="pl-2 text-gray-500 font-semibold">@AppName</div>
+    </div>
+    <h2 class="mt-6 text-3xl font-extrabold text-center text-gray-900">
+      Sign in
+    </h2>
+    @* } *@
+  </div>
+
+  <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+    <div class="px-4 py-8 bg-white shadow sm:rounded-lg sm:px-10">
+
+      <form class="space-y-6"
+            id="account"
+            method="post">
+        <div>
+          <label asp-for="Input.Email"
+                 class="block text-sm font-medium text-gray-700">
+          </label>
+          <div class="mt-1">
+            <input asp-for="Input.Email"
+                   class="block w-full px-3 py-2 placeholder-gray-400 border border-gray-300 rounded-md shadow-sm appearance-none focus:outline-none focus:ring-turquoise-500 focus:border-turquoise-500 sm:text-sm"
+                   type="text"/>
+          </div>
+        </div>
+        <div>
+          <label asp-for="Input.Password"
+                 class="block text-sm font-medium text-gray-700">
+          </label>
+          <div class="mt-1">
+            <input asp-for="Input.Password"
+                   class="block w-full px-3 py-2 placeholder-gray-400 border border-gray-300 rounded-md shadow-sm appearance-none focus:outline-none focus:ring-turquoise-500 focus:border-turquoise-500 sm:text-sm"
+                   hx-action="PasswordValidation"
+                   hx-controller="RegisterUser"
+                   hx-post
+                   hx-swap="innerHTML"
+                   hx-target="#passwordstrength"
+                   hx-trigger="keyup"
+                   type="password"/>
+          </div>
+        </div>
+
+        <div asp-validation-summary="All">
+        </div>
+        <div>
+          <button class="flex justify-center w-full px-4 py-2 text-sm font-medium text-white border border-transparent rounded-md shadow-sm bg-turquoise-500 hover:bg-turquoise-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-turquoise-500 disabled:opacity-50 disabled:cursor-not-allowed"
+                  type="submit">
+            Sign in
+          </button>
+        </div>
+        <div>
+          No Account?
+          <a asp-action="RegisterUser"
+             asp-controller="RegisterUser"
+             asp-route-returnUrl="@Model.ReturnUrl"
+             class="text-turquoise-500 hover:text-turquoise-300">
+            Sign up now
+          </a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+</body>
+@Html.HtmxAntiforgeryScript()
+</html>
+
+@* *@
+@* <h1>@ViewData["Title"]</h1> *@
+@* <div class="row"> *@
+@*   <div class="col-md-4"> *@
+@*     <section> *@
+@*       <form id="account" *@
+@*             method="post"> *@
+@*         <h2>Use a local account to log in.</h2> *@
+@*         <hr/> *@
+@*         <div asp-validation-summary="ModelOnly" *@
+@*              class="text-danger"> *@
+@*         </div> *@
+@*         <div class="form-floating"> *@
+@*           <input aria-required="true" *@
+@*                  asp-for="Input.Email" *@
+@*                  autocomplete="username" *@
+@*                  class="form-control"/> *@
+@*           <label asp-for="Input.Email" *@
+@*                  class="form-label"> *@
+@*           </label> *@
+@*           <span asp-validation-for="Input.Email" *@
+@*                 class="text-danger"> *@
+@*           </span> *@
+@*         </div> *@
+@*         <div class="form-floating"> *@
+@*           <input aria-required="true" *@
+@*                  asp-for="Input.Password" *@
+@*                  autocomplete="current-password" *@
+@*                  class="form-control"/> *@
+@*           <label asp-for="Input.Password" *@
+@*                  class="form-label"> *@
+@*           </label> *@
+@*           <span asp-validation-for="Input.Password" *@
+@*                 class="text-danger"> *@
+@*           </span> *@
+@*         </div> *@
+@*         <div> *@
+@*           <div class="checkbox"> *@
+@*             <label asp-for="Input.RememberMe" *@
+@*                    class="form-label"> *@
+@*               <input asp-for="Input.RememberMe" *@
+@*                      class="form-check-input"/> *@
+@*               @Html.DisplayNameFor(m => m.Input.RememberMe) *@
+@*             </label> *@
+@*           </div> *@
+@*         </div> *@
+@*         <div> *@
+@*           <button class="w-100 btn btn-lg btn-primary" *@
+@*                   id="login-submit" *@
+@*                   type="submit"> *@
+@*             Log in *@
+@*           </button> *@
+@*         </div> *@
+@*         <div> *@
+@* <p> *@
+@*   <a asp-page="./ForgotPassword" *@
+@*      id="forgot-password"> *@
+@*     Forgot your password? *@
+@*   </a> *@
+@* </p> *@
+@* <p> *@
+@*   <a asp-action="Index" *@
+@*      asp-controller="Registration" *@
+@*      asp-route-returnUrl="@Model.ReturnUrl"> *@
+@*     Register as a new user *@
+@*   </a> *@
+@* </p> *@
+@* <p> *@
+@*             <a asp-page="./ResendEmailConfirmation" *@
+@*                id="resend-confirmation"> *@
+@*               Resend email confirmation *@
+@*             </a> *@
+@*           </p> *@
+@*         </div> *@
+@*       </form> *@
+@*     </section> *@
+@*   </div> *@
+@*   <div class="col-md-6 col-md-offset-2"> *@
+@*     <section> *@
+@*       <h3>Use another service to log in.</h3> *@
+@*       <hr/> *@
+@*       @{ *@
+@*         if ((Model.ExternalLogins?.Count ?? 0) == 0) *@
+@*         { *@
+@*           <div> *@
+@*             <p> *@
+@*               There are no external authentication services configured. See this *@
+@*               <a href="https://go.microsoft.com/fwlink/?LinkID=532715"> *@
+@*                 article *@
+@*                 about setting up this ASP.NET application to support logging in via external services *@
+@*               </a>. *@
+@*             </p> *@
+@*           </div> *@
+@*         } *@
+@*         else *@
+@*         { *@
+@*           <form asp-page="./ExternalLogin" *@
+@*                 asp-route-returnUrl="@Model.ReturnUrl" *@
+@*                 class="form-horizontal" *@
+@*                 id="external-account" *@
+@*                 method="post"> *@
+@*             <div> *@
+@*               <p> *@
+@*                 @foreach (var provider in Model.ExternalLogins) *@
+@*                 { *@
+@*                   <button class="btn btn-primary" *@
+@*                           name="provider" *@
+@*                           title="Log in using your @provider.DisplayName account" *@
+@*                           type="submit" *@
+@*                           value="@provider.Name"> *@
+@*                     @provider.DisplayName *@
+@*                   </button> *@
+@*                 } *@
+@*               </p> *@
+@*             </div> *@
+@*           </form> *@
+@*         } *@
+@*       } *@
+@*     </section> *@
+@*   </div> *@
+@* </div> *@
+@* *@
+@* * } *@

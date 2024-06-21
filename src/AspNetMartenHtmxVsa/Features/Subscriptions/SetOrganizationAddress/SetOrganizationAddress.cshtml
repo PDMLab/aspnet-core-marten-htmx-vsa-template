@@ -1,0 +1,75 @@
+@using AspNetMartenHtmxVsa.Core
+@using Htmx
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model AspNetMartenHtmxVsa.Features.SetOrganizationAddress.SetOrgAddress
+
+
+@{
+  Layout = this.NonHtmxLayout("~/Features/Subscriptions/GetOrganization/GetOrganizationLayout.cshtml");
+}
+
+
+<div class="space-y-6 sm:px-6 lg:px-0 lg:col-span-9"
+     id="addressform">
+  <section aria-labelledby="payment-details-heading">
+    <form hx-action="SetOrganizationAddress"
+          hx-controller="SetOrganizationAddress"
+          hx-put
+          hx-swap="outerHTML"
+          hx-target="#addressform">
+      <div class="shadow sm:rounded-md sm:overflow-hidden">
+        <div class="bg-white py-6 px-4 sm:p-6">
+          <div>
+            <h2 class="text-lg leading-6 font-medium text-turquoise-900"
+                id="payment-details-heading">
+              Unternehmen
+            </h2>
+          </div>
+
+          <div class="mt-6 grid grid-cols-4 gap-6">
+            <div class="col-span-4 sm:col-span-2">
+              <text-input asp-for="CompanyName"></text-input>
+            </div>
+            <div class="col-span-4 sm:col-span-2">
+              <text-input asp-for="CompanyNameAddendum"></text-input>
+            </div>
+
+            <div class="col-span-4 sm:col-span-2">
+              <text-input asp-for="AddressLine1"></text-input>
+            </div>
+
+            <div class="col-span-4 sm:col-span-2">
+              <text-input asp-for="AddressLine2"></text-input>
+            </div>
+
+            <div class="col-span-4 sm:col-span-1">
+              <text-input asp-for="ZipCode"></text-input>
+            </div>
+
+            <div class="col-span-4 sm:col-span-1">
+              <text-input asp-for="City"></text-input>
+            </div>
+
+            <div class="col-span-4 sm:col-span-2">
+              <label class="block text-sm text-gray-900">Land</label>
+              <select class="mt-1 block w-full bg-white px-3 py-2 placeholder-gray-400 border border-gray-300 rounded-md shadow-sm appearance-none focus:outline-none focus:ring-turquoise-500 focus:border-turquoise-500 sm:text-sm"
+                      id="country"
+                      name="country">
+                <option>Deutschland</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="bg-white px-4 sm:p-6">
+          <div></div>
+        </div>
+        <div class="px-4 py-3 bg-turquoise-50 text-right sm:px-6">
+          <button class="inline-flex justify-center px-4 py-2 text-sm font-medium text-white border border-transparent rounded-md shadow-sm bg-turquoise-500 hover:bg-turquoise-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-turquoise-500 disabled:opacity-50 disabled:cursor-not-allowed"
+                  type="submit">
+            Speichern
+          </button>
+        </div>
+      </div>
+    </form>
+  </section>
+</div>

@@ -1,5 +1,8 @@
 using AspNetMartenHtmxVsa;
 using AspNetMartenHtmxVsa.Core;
+using AspNetMartenHtmxVsa.Areas.Identity.Data;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 var configuration = new ConfigurationManager()
   .AddJsonFile("appsettings.json")

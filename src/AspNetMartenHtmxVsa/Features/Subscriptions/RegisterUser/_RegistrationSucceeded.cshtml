@@ -1,0 +1,15 @@
+<div>
+  <div>Successfully registered.</div>
+  <div class="py-4">You can sign in now</div>
+  @using (Html.BeginForm(
+            "GetHome",
+            "GetHome",
+            FormMethod.Get
+          ))
+  {
+    <button class="flex justify-center w-full px-4 py-2 text-sm font-medium text-white border border-transparent rounded-md shadow-sm bg-turquoise-500 hover:bg-turquoise-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-turquoise-500"
+            type="submit">
+      Sign in
+    </button>
+  }
+</div>

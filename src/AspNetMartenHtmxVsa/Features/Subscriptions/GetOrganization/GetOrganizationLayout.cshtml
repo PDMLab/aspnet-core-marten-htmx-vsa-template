@@ -1,0 +1,21 @@
+@using AspNetMartenHtmxVsa.Components.NavigationItemTagHelper
+@{
+  Layout = "_LayoutSettings";
+}
+
+<h1>Organisationsprofil</h1>
+
+@{
+  var organizationItems = new List<NavigationItem>();
+}
+
+@{
+<div class="flex"
+     hx-boost="true">
+  @foreach (var item in organizationItems)
+  {
+    <tab item="item"></tab>
+  }
+</div>}
+
+@RenderBody()

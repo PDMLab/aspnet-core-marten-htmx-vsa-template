@@ -1,7 +1,12 @@
+using AspNetMartenHtmxVsa.Areas.Identity.Data;
+using AspNetMartenHtmxVsa.Configuration;
+using AspNetMartenHtmxVsa.Core;
 using AspNetMartenHtmxVsa.EventSourcing;
 using Marten;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.AspNetCore.Mvc.Razor;
+using Microsoft.EntityFrameworkCore;
 
 namespace AspNetMartenHtmxVsa;
 
@@ -17,26 +22,39 @@ public class ConfigureHost
       builder =>
       {
         builder.ConfigureServices(
-          services =>
+          (
+            context,
+            services
+          ) =>
           {
+            var identityTestConnectionString = context.Configuration.GetConnectionString("Identity");
+            services.AddDbContext<AppDbContext>(
+              options => { options.UseNpgsql(identityTestConnectionString); }
+            );
+
+            services.AddDefaultIdentity<AppUser>(options => options.SignIn.RequireConfirmedAccount = false)
+              .AddEntityFrameworkStores<AppDbContext>();
+            
+            services.AddTransient<IClaimsTransformation, OidcLikeClaimsTransformation>();
+
+
+            services.AddMarten(
+              context.Configuration
+            );
+
+
             services.Configure<RazorViewEngineOptions>(
-              options => options.ViewLocationExpanders.Add(new FeatureFolderLocationExpander())
+              options =>
+              {
+                options.ViewLocationExpanders.Add(new FeatureFolderLocationExpander());
+              }
             );
             services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
             services.AddControllersWithViews()
               .AddRazorRuntimeCompilation();
-            services.AddMarten(
-              options =>
-              {
-                var connectionString =
-                  configuration.GetConnectionString("eventstore") ??
-                  throw new ArgumentNullException($"Missing connection string 'eventstore'");
-                options.Connection(connectionString);
-                StoreConfiguration.Configure(options);
-              }
-            );
+            services.AddRazorPages();
             configureServices?.Invoke(services);
           }
         );
@@ -46,10 +64,15 @@ public class ConfigureHost
             app.UseStaticFiles();
 
             app.UseRouting();
+            
+            app.UseAuthentication();
+            app.UseAuthorization();
+            
             app.UseEndpoints(
               routeBuilder =>
               {
                 routeBuilder.MapControllers();
+                routeBuilder.MapRazorPages();
                 routeBuilder.MapDefaultControllerRoute();
               }
             );

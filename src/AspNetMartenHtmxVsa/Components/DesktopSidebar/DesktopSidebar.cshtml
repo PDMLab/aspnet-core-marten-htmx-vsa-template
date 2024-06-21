@@ -1,0 +1,96 @@
+@using Microsoft.AspNetCore.Http;
+@using Microsoft.AspNetCore.Routing;
+@using AspNetMartenHtmxVsa.Components.NavigationItemTagHelper
+@using static AspNetMartenHtmxVsa.Core.Constants
+@using Tailwind.Heroicons
+@{
+  var primaryItems = new List<NavigationItem>();
+}
+
+@{
+  var secondaryItems = new List<NavigationItem>()
+  {
+    new(
+      "Einstellungen",
+      "/settings",
+      null,
+      new[] { "/settings" },
+      IconSymbol.Cog
+    ),
+    new(
+      "Abmelden",
+      "/logout",
+      null,
+      new[] { "/logout" },
+      IconSymbol.ArrowRightEndOnRectangle
+    )
+  };
+}
+
+<div class="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col">
+  <!-- Sidebar component, swap this element with another sidebar if you like -->
+  <div class="flex grow flex-col gap-y-5 overflow-y-auto border-r border-gray-200 bg-white px-6">
+    <div class="flex h-16 shrink-0 items-center">
+      <img alt="@AppName logo"
+           class="h-8 w-auto"
+           src="~/img/logo-outline.svg">
+    </div>
+    <nav class="flex flex-1 flex-col">
+      <ul class="flex flex-1 flex-col gap-y-7"
+          role="list">
+        <li>
+          <ul class="-mx-2 space-y-1"
+              hx-boost="true"
+              role="list">
+            @foreach (var item in primaryItems)
+            {
+              <li>
+                <navigation-item item="item"></navigation-item>
+              </li>
+            }
+          </ul>
+        </li>
+        <li>
+          <ul class="-mx-2 mt-2 space-y-1"
+              hx-boost="true"
+              role="list">
+            @foreach (var item in secondaryItems)
+            {
+              <li>
+                <navigation-item item="item"></navigation-item>
+              </li>
+            }
+          </ul>
+        </li>
+        <li class="-mx-6 mt-auto">
+          <a class="flex items-center gap-x-4 px-6 py-3 text-sm font-semibold leading-6 text-gray-900 hover:bg-gray-50"
+             href="#">
+            <img alt=""
+                 class="h-8 w-8 rounded-full bg-gray-50"
+                 src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80">
+            <span class="sr-only">Your profile</span>
+            <span aria-hidden="true">Tom Cook</span>
+          </a>
+        </li>
+      </ul>
+      <ul class="text-xs">
+        @foreach (var routeValue in Context.Request.RouteValues)
+        {
+          <li>
+            @routeValue.Key: @routeValue.Value
+          </li>
+        }
+        <li>
+          @{
+            var endpoint = Context.GetEndpoint() as RouteEndpoint;
+            var routeNameMetadata =
+              endpoint?.Metadata.OfType<RouteNameMetadata>()
+                .SingleOrDefault();
+            var routeName = routeNameMetadata?.RouteName;
+          }
+          Route name: @routeName
+        </li>
+      </ul>
+    </nav>
+  </div>
+</div>

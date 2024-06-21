@@ -1,0 +1,43 @@
+@using static AspNetMartenHtmxVsa.Core.Constants
+@{
+  Layout = null;
+}
+
+@* source: https://tailwindui.com/components/application-ui/application-shells/multi-column#component-aa0e4b496e24d741e984c820f5e938ba *@
+
+@* Directory: https://tailwindui.com/components/application-ui/page-examples/detail-screens?include=archived#component-225fc3ab787d82e9efaffda66a582a0b *@
+
+<html class="h-full bg-white"
+      lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0"
+        name="viewport"/>
+  <title>@ViewData["Title"] - @AppName</title>
+  <link asp-append-version="true"
+        href="~/css/site.css"
+        rel="stylesheet"/>
+  <script src="~/lib/htmx.org/dist/htmx.min.js"></script>
+  <script src="~/lib/alpinejs/dist/cdn.js"></script>
+</head>
+
+
+<body class="h-full debug-screens">
+<div>
+  @await Html.PartialAsync("MobileSidebar")
+  @await Html.PartialAsync("DesktopSidebar")
+
+  <!-- Main area -->
+  <main-content>
+    @RenderBody()
+  </main-content>
+
+  <!-- Secondary column (hidden on smaller screens) -->
+  <secondary-column>
+    @await RenderSectionAsync("SecondaryColumn")
+  </secondary-column>
+
+
+</div>
+</body>
+</html>

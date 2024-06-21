@@ -1,0 +1,122 @@
+@using Microsoft.AspNetCore.Hosting
+@using Microsoft.AspNetCore.Mvc.ViewEngines
+@inject IWebHostEnvironment Environment
+@inject ICompositeViewEngine Engine
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0"
+        name="viewport"/>
+  <title>@ViewData["Title"] - AspNetMartenHtmxVsa</title>
+
+  <environment include="Development">
+    <link href="~/css/site.css"
+          rel="stylesheet"/>
+  </environment>
+  <environment exclude="Development">
+    <link asp-fallback-href="~/Identity/lib/bootstrap/dist/css/bootstrap.min.css"
+          asp-fallback-test-class="sr-only"
+          asp-fallback-test-property="position"
+          asp-fallback-test-value="absolute"
+          crossorigin="anonymous"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
+          integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
+          rel="stylesheet"/>
+    <link asp-append-version="true"
+          href="~/css/site.css"
+          rel="stylesheet"/>
+  </environment>
+</head>
+<body>
+<header>
+  <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+    <div class="container">
+      <a class="navbar-brand"
+         href="~/">AspNetMartenHtmxVsa</a>
+      <button aria-controls="navbarSupportedContent"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+              class="navbar-toggler"
+              data-bs-target=".navbar-collapse"
+              data-bs-toggle="collapse"
+              type="button">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+        @{
+          var result = Engine.FindView(
+            ViewContext,
+            "/Pages/_LoginPartial.cshtml",
+            isMainPage: false
+          );
+        }
+        @if (result.Success)
+        {
+          await Html.RenderPartialAsync("/Pages/_LoginPartial.cshtml");
+        }
+        else
+        {
+          throw new InvalidOperationException(
+            "The default Identity UI layout requires a partial view '_LoginPartial' " +
+            "usually located at '/Pages/_LoginPartial' or at '/Views/Shared/_LoginPartial' to work. Based on your configuration " +
+            $"we have looked at it in the following locations: {System.Environment.NewLine}{string.Join(System.Environment.NewLine, result.SearchedLocations)}."
+          );
+        }
+      </div>
+    </div>
+  </nav>
+</header>
+
+<div class="container">
+  <main class="pb-1"
+        role="main">
+    @RenderBody()
+  </main>
+</div>
+<footer class="footer border-top pl-3 text-muted">
+  <div class="container">
+    &copy; 2024 - AspNetMartenHtmxVsa
+    @{
+      var foundPrivacy = Url.Page(
+        "/Privacy",
+        new
+        {
+          area = ""
+        }
+      );
+    }
+    @if (foundPrivacy != null)
+    {
+      <a asp-area=""
+         asp-page="/Privacy">Privacy</a>
+    }
+  </div>
+</footer>
+
+<environment include="Development">
+  <script src="~/Identity/lib/jquery/dist/jquery.js"></script>
+  <script src="~/Identity/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
+  <script asp-append-version="true"
+          src="~/Identity/js/site.js"></script>
+</environment>
+<environment exclude="Development">
+  <script asp-fallback-src="~/Identity/lib/jquery/dist/jquery.min.js"
+          asp-fallback-test="window.jQuery"
+          crossorigin="anonymous"
+          integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2"
+          src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+        </script>
+  <script asp-fallback-src="~/Identity/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
+          asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+          crossorigin="anonymous"
+          integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+          src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js">
+        </script>
+  <script asp-append-version="true"
+          src="~/Identity/js/site.js"></script>
+</environment>
+
+@await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

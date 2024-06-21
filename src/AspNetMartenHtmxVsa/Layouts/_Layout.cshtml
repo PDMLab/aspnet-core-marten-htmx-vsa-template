@@ -13,6 +13,7 @@
 <body>
 <header>
   <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+    @await Html.PartialAsync("/Pages/_LoginPartial.cshtml");
     <div class="container-fluid">
       <a asp-action="GetHome"
          asp-area=""
