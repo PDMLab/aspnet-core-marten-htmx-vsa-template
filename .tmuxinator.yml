@@ -30,6 +30,7 @@ windows:
         - database:
             - printf '\033]2;%s\033\\' 'database'
             - cd database
+            - mkdir -p data
             - docker compose up
         - server:
             - printf '\033]2;%s\033\\' 'app'
