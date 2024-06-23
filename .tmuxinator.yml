@@ -48,7 +48,7 @@ windows:
         - marten-test:
             - printf '\033]2;%s\033\\' 'marten-test'
             - cd src/AspNetMartenHtmxVsa.IntegrationTests/test-database
-            - docker-compose up
+            - docker compose up
   - frontend:
       layout: even-vertical
       panes:
