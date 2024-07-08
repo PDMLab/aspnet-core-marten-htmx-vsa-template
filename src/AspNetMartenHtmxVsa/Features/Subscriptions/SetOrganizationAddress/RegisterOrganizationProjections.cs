@@ -1,7 +1,7 @@
 using Marten;
 using Marten.Events.Projections;
 
-namespace AspNetMartenHtmxVsa.Features.SetOrganizationAddress;
+namespace AspNetMartenHtmxVsa.Features.Subscriptions.SetOrganizationAddress;
 
 public static class RegisterOrganizationProjections
 {

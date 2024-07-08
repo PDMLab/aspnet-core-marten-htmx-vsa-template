@@ -69,10 +69,13 @@
     </div>
   </div>
   <div id="passwordstrength">
-    @await Html.PartialAsync("~/Features/Subscriptions/RegisterUser/_PasswordStrength.cshtml", new PasswordValidation()
-           {
-             PasswordScore = null
-           })
+    @await Html.PartialAsync(
+      "~/Features/Subscriptions/RegisterUser/_PasswordStrength.cshtml",
+      new PasswordValidation()
+      {
+        PasswordScore = null
+      }
+    )
   </div>
 
   <div class="flex items-center justify-between">

@@ -1,0 +1,30 @@
+﻿@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model AspNetMartenHtmxVsa.Features.Account.SendCode.SendCodeViewModel
+@{
+  ViewData["Title"] = "Send Verification Code";
+}
+
+<h1>@ViewData["Title"].</h1>
+
+<form asp-action="SendCode"
+      asp-controller="Account"
+      asp-route-returnurl="@Model.ReturnUrl"
+      class="form-horizontal"
+      method="post"
+      role="form">
+  <input asp-for="RememberMe"
+         type="hidden"/>
+  <div class="row">
+    <div class="col-md-8">
+      Select Two-Factor Authentication Provider:
+      <select asp-for="SelectedProvider"
+              asp-items="Model.Providers"></select>
+      <button class="btn btn-default"
+              type="submit">Submit</button>
+    </div>
+  </div>
+</form>
+
+@section Scripts {
+  @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

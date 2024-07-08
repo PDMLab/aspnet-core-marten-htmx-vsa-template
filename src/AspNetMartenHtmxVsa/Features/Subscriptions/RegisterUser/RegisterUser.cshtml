@@ -15,31 +15,39 @@
 
 <head>
   <meta charset="utf-8"/>
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1.0"/>
-  <meta name="htmx-config"
-        includeAspNetAntiforgeryToken="true"/>
+  <meta content="width=device-width, initial-scale=1.0"
+        name="viewport"/>
+  <meta includeAspNetAntiforgeryToken="true"
+        name="htmx-config"/>
   <title>
-    @(string.IsNullOrEmpty(ViewData["Title"]?.ToString()) ? AppName : $"{ViewData["Title"]} - {AppName}")
+    @(
+    string.IsNullOrEmpty(
+      ViewData["Title"]
+        ?.ToString()
+    )
+      ? AppName
+      : $"{ViewData["Title"]} - {AppName}"
+    )
   </title>
 
 
   <script src="~/lib/htmx.org/dist/htmx.min.js"></script>
-  <link rel="stylesheet"
+  <link asp-append-version="true"
         href="~/css/site.css"
-        asp-append-version="true"/>
+        rel="stylesheet"/>
 </head>
-<body id="target" class="debug-screens">
+<body class="debug-screens"
+      id="target">
 
 <div class="flex flex-col justify-center min-h-screen py-12 bg-gray-50 sm:px-6 lg:px-8">
   <div class="sm:mx-auto sm:w-full sm:max-w-md">
 
     <div class="flex justify-center items-center">
-          <img alt="@AppName Logo"
-               class="w-auto h-12"
-               src="~/img/logo-outline.svg"/>
-          <div class="pl-2 text-gray-500 font-semibold">@AppName</div>
-        </div>
+      <img alt="@AppName Logo"
+           class="w-auto h-12"
+           src="~/img/logo-outline.svg"/>
+      <div class="pl-2 text-gray-500 font-semibold">@AppName</div>
+    </div>
     <h2 class="mt-6 text-3xl font-extrabold text-center text-gray-900">
       Sign up
     </h2>
@@ -49,8 +57,7 @@
   <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
     <div class="px-4 py-8 bg-white shadow sm:rounded-lg sm:px-10">
       <div asp-validation-summary="All"></div>
-      @{@(await Html.
-          PartialAsync("~/Features/Subscriptions/RegisterUser/_RegistrationForm.cshtml", Model?.Input))}
+      @{@(await Html.PartialAsync("~/Features/Subscriptions/RegisterUser/_RegistrationForm.cshtml", Model?.Input))}
     </div>
   </div>
 </div>

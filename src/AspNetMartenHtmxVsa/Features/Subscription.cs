@@ -1,4 +1,4 @@
-using AspNetMartenHtmxVsa.Features.Subscribe;
+using AspNetMartenHtmxVsa.Features.Subscriptions.Subscribe;
 using Marten;
 using Marten.Events;
 using Marten.Events.Aggregation;
@@ -30,10 +30,8 @@ public record Subscription(
   public string? City { get; set; }
 }
 
-public class SubscriptionProjection: SingleStreamProjection<Subscription>
+public class SubscriptionProjection : SingleStreamProjection<Subscription>
 {
-  
-
   // Create a new aggregate based on the initial
   // event type
   // ReSharper disable once UnusedMember.Global

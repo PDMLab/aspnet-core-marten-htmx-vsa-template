@@ -9,7 +9,7 @@ using Marten.Events.Aggregation;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace AspNetMartenHtmxVsa.Features.SetOrganizationAddress;
+namespace AspNetMartenHtmxVsa.Features.Subscriptions.SetOrganizationAddress;
 
 [Authorize]
 public class SetOrganizationAddressController : Controller

@@ -1,6 +1,6 @@
 using AspNetMartenHtmxVsa.Features;
-using AspNetMartenHtmxVsa.Features.SetOrganizationAddress;
 using AspNetMartenHtmxVsa.Features.Subscriptions.RegisterUser;
+using AspNetMartenHtmxVsa.Features.Subscriptions.SetOrganizationAddress;
 using static AspNetMartenHtmxVsa.Core.Constants;
 using Marten;
 using Marten.Events.Projections;
