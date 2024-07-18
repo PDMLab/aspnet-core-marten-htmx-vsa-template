@@ -1,4 +1,3 @@
-using AspNetMartenHtmxVsa.Areas.Identity.Data;
 using AspNetMartenHtmxVsa.Features.Account.Manage.ManageLogins;
 using AspNetMartenHtmxVsa.Features.Account.Services;
 using Microsoft.AspNetCore.Identity;
@@ -62,6 +61,7 @@ public class RemoveLoginController : Controller
 
     return RedirectToAction(
       nameof(ManageLogins),
+      "ManageLogins",
       new
       {
         Message = message

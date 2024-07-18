@@ -1,5 +1,4 @@
 using System.ComponentModel.DataAnnotations;
-using AspNetMartenHtmxVsa.Areas.Identity.Data;
 using AspNetMartenHtmxVsa.Features.Account.Services;
 using AspNetMartenHtmxVsa.Features.GetHome;
 using Microsoft.AspNetCore.Authorization;
@@ -89,6 +88,7 @@ public class LoginController : Controller
       {
         return RedirectToAction(
           nameof(SendCode),
+          "SendCode",
           new
           {
             ReturnUrl = returnUrl,

@@ -1,4 +1,3 @@
-using AspNetMartenHtmxVsa.Areas.Identity.Data;
 using AspNetMartenHtmxVsa.Features.Account.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -43,7 +42,7 @@ public class EnableTwoFactorAuthenticationController : Controller
       _logger.LogInformation(1, "User enabled two-factor authentication.");
     }
 
-    return RedirectToAction(nameof(Index), "Manage");
+    return RedirectToAction(nameof(ManageAccount), "ManageAccount");
   }
 
   private Task<AppUser> GetCurrentUserAsync()

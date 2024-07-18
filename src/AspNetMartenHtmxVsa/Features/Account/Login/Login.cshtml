@@ -1,4 +1,5 @@
-﻿@using Microsoft.AspNetCore.Mvc.TagHelpers
+﻿@using AspNetMartenHtmxVsa.Features.Account
+@using Microsoft.AspNetCore.Mvc.TagHelpers
 @model AspNetMartenHtmxVsa.Features.Account.Login.LoginViewModel
 @inject SignInManager<AppUser> SignInManager
 
@@ -11,7 +12,7 @@
   <div class="col-md-8">
     <section>
       <form asp-action="Login"
-            asp-controller="Account"
+            asp-controller="Login"
             asp-route-returnurl="@ViewData["ReturnUrl"]"
             class="form-horizontal"
             method="post"
@@ -58,10 +59,12 @@
         </div>
         <p>
           <a asp-action="Register"
+             asp-controller="Register"
              asp-route-returnurl="@ViewData["ReturnUrl"]">Register as a new user?</a>
         </p>
         <p>
-          <a asp-action="ForgotPassword">Forgot your password?</a>
+          <a asp-action="ForgotPassword"
+             asp-controller="ForgotPassword">Forgot your password?</a>
         </p>
       </form>
     </section>
@@ -85,7 +88,7 @@
         else
         {
           <form asp-action="ExternalLogin"
-                asp-controller="Account"
+                asp-controller="ExternalLogin"
                 asp-route-returnurl="@ViewData["ReturnUrl"]"
                 class="form-horizontal"
                 method="post"

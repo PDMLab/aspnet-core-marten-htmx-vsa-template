@@ -1,5 +1,4 @@
 using System.ComponentModel.DataAnnotations;
-using AspNetMartenHtmxVsa.Areas.Identity.Data;
 using AspNetMartenHtmxVsa.Features.GetHome;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;

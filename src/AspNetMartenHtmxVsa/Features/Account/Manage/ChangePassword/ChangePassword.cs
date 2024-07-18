@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
-using AspNetMartenHtmxVsa.Areas.Identity.Data;
 using AspNetMartenHtmxVsa.Features.Account;
+using AspNetMartenHtmxVsa.Features.Account.Manage.ManageAccount;
 using AspNetMartenHtmxVsa.Features.Account.Manage.ManageLogins;
 using AspNetMartenHtmxVsa.Features.Account.Services;
 using Microsoft.AspNetCore.Identity;
@@ -88,8 +88,10 @@ public class ChangePasswordController : Controller
       {
         await _signInManager.SignInAsync(user, isPersistent: false);
         _logger.LogInformation(3, "User changed their password successfully.");
+        // TODO: HTMX response
         return RedirectToAction(
-          nameof(Index),
+          nameof(ManageAccountController.ManageAccount),
+          "ManageAccount",
           new
           {
             Message = ManageMessageId.ChangePasswordSuccess
@@ -101,8 +103,10 @@ public class ChangePasswordController : Controller
       return View("~/Features/Account/Manage/ChangePassword/ChangePassword.cshtml", model);
     }
 
+    // TODO: HTMX response
     return RedirectToAction(
-      nameof(Index),
+      nameof(ManageAccountController.ManageAccount),
+      "ManageAccount",
       new
       {
         Message = ManageMessageId.Error

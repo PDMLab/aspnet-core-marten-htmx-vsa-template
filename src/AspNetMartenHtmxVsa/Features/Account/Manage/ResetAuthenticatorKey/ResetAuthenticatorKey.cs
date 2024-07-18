@@ -1,4 +1,3 @@
-using AspNetMartenHtmxVsa.Areas.Identity.Data;
 using AspNetMartenHtmxVsa.Features.Account.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -42,7 +41,7 @@ public class ResetAuthenticatorKeyController : Controller
       _logger.LogInformation(1, "User reset authenticator key.");
     }
 
-    return RedirectToAction(nameof(Index), "Manage");
+    return RedirectToAction(nameof(ManageAccount), "ManageAccount");
   }
 
   private Task<AppUser> GetCurrentUserAsync()

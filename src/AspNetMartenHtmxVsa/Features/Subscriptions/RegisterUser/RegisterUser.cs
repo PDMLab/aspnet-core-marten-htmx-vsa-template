@@ -1,8 +1,8 @@
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.InteropServices.JavaScript;
 using System.Security.Claims;
-using AspNetMartenHtmxVsa.Areas.Identity.Data;
 using AspNetMartenHtmxVsa.Core;
+using AspNetMartenHtmxVsa.Features.Account;
 using AspNetMartenHtmxVsa.Features.Subscriptions.SetCompanyNameFromUserRegistration;
 using AspNetMartenHtmxVsa.Features.Subscriptions.Subscribe;
 using Easy_Password_Validator;

@@ -1,5 +1,4 @@
 using System.Security.Claims;
-using AspNetMartenHtmxVsa.Areas.Identity.Data;
 using AspNetMartenHtmxVsa.Features.Account.Services;
 using AspNetMartenHtmxVsa.Features.GetHome;
 using Microsoft.AspNetCore.Authorization;
@@ -45,7 +44,7 @@ public class ExternalLoginController : Controller
     // Request a redirect to the external login provider.
     var redirectUrl = Url.Action(
       "ExternalLoginCallback",
-      "Account",
+      "ExternalLogin",
       new
       {
         ReturnUrl = returnUrl
@@ -73,7 +72,7 @@ public class ExternalLoginController : Controller
     var info = await _signInManager.GetExternalLoginInfoAsync();
     if (info == null)
     {
-      return RedirectToAction(nameof(Login));
+      return RedirectToAction(nameof(Login), "Login");
     }
 
     // Sign in the user with this external login provider if the user already has a login.
@@ -99,6 +98,7 @@ public class ExternalLoginController : Controller
     {
       return RedirectToAction(
         nameof(SendCode),
+        "SendCode",
         new
         {
           ReturnUrl = returnUrl

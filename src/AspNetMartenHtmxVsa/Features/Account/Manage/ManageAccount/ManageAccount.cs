@@ -1,4 +1,3 @@
-using AspNetMartenHtmxVsa.Areas.Identity.Data;
 using AspNetMartenHtmxVsa.Features.Account.Manage.ManageLogins;
 using AspNetMartenHtmxVsa.Features.Account.Services;
 using Microsoft.AspNetCore.Identity;
@@ -47,7 +46,7 @@ public class ManageAccountController : Controller
 
 //
 // GET: /Manage/Index
-  [HttpGet]
+  [HttpGet("/Account/Manage")]
   public async Task<IActionResult> ManageAccount(
     ManageMessageId? message = null
   )

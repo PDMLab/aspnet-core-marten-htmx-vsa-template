@@ -1,4 +1,3 @@
-using AspNetMartenHtmxVsa.Areas.Identity.Data;
 using AspNetMartenHtmxVsa.Features.Account.Services;
 using AspNetMartenHtmxVsa.Features.GetHome;
 using Microsoft.AspNetCore.Identity;

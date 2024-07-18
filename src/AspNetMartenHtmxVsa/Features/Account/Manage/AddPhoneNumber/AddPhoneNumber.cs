@@ -1,5 +1,4 @@
 using System.ComponentModel.DataAnnotations;
-using AspNetMartenHtmxVsa.Areas.Identity.Data;
 using AspNetMartenHtmxVsa.Features.Account.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -61,6 +60,7 @@ public class AddPhoneNumberController : Controller
     await _smsSender.SendSmsAsync(model.PhoneNumber, "Your security code is: " + code);
     return RedirectToAction(
       nameof(VerifyPhoneNumber),
+      "VerifyPhoneNumber",
       new
       {
         PhoneNumber = model.PhoneNumber

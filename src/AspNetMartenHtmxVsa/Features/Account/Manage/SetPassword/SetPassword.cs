@@ -1,5 +1,4 @@
 using System.ComponentModel.DataAnnotations;
-using AspNetMartenHtmxVsa.Areas.Identity.Data;
 using AspNetMartenHtmxVsa.Features.Account.Manage.ManageLogins;
 using AspNetMartenHtmxVsa.Features.Account.Services;
 using Microsoft.AspNetCore.Identity;
@@ -76,8 +75,10 @@ public class SetPasswordController : Controller
       if (result.Succeeded)
       {
         await _signInManager.SignInAsync(user, isPersistent: false);
+        // TODO: HTMX response
         return RedirectToAction(
-          nameof(Index),
+          nameof(ManageAccount),
+          "ManageAccount",
           new
           {
             Message = ManageMessageId.SetPasswordSuccess
@@ -89,8 +90,10 @@ public class SetPasswordController : Controller
       return View("~/Features/Account/Manage/SetPassword/SetPassword.cshtml", model);
     }
 
+    // TODO: HTMX response
     return RedirectToAction(
-      nameof(Index),
+      nameof(ManageAccount),
+      "ManageAccount",
       new
       {
         Message = ManageMessageId.Error

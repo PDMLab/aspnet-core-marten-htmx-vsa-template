@@ -17,20 +17,20 @@
       {
         <text>[&nbsp;&nbsp;
           <a asp-action="ChangePassword"
-             asp-controller="Manage">Change</a>&nbsp;&nbsp;]</text>
+             asp-controller="ChangePassword">Change</a>&nbsp;&nbsp;]</text>
       }
       else
       {
         <text>[&nbsp;&nbsp;
           <a asp-action="SetPassword"
-             asp-controller="Manage">Create</a>&nbsp;&nbsp;]</text>
+             asp-controller="SetPassword">Create</a>&nbsp;&nbsp;]</text>
       }
     </dd>
     <dt>External Logins:</dt>
     <dd>
       @Model.Logins.Count [&nbsp;&nbsp;
       <a asp-action="ManageLogins"
-         asp-controller="Manage">Manage</a>&nbsp;&nbsp;]
+         asp-controller="ManageLogins">Manage</a>&nbsp;&nbsp;]
     </dd>
     <dt>Phone Number:</dt>
     <dd>
@@ -45,9 +45,9 @@
         <br/>
         <text>[&nbsp;&nbsp;
           <a asp-action="AddPhoneNumber"
-             asp-controller="Manage">Change</a>&nbsp;&nbsp;]</text>
+             asp-controller="AddPhoneNumber">Change</a>&nbsp;&nbsp;]</text>
         <form asp-action="RemovePhoneNumber"
-              asp-controller="Manage"
+              asp-controller="RemovePhoneNumber"
               method="post"
               role="form">
           [
@@ -59,7 +59,7 @@
       {
         <text>[&nbsp;&nbsp;
           <a asp-action="AddPhoneNumber"
-             asp-controller="Manage">Add</a>&nbsp;&nbsp;]</text>
+             asp-controller="AddPhoneNumber">Add</a>&nbsp;&nbsp;]</text>
       }
     </dd>
 
@@ -72,7 +72,7 @@
       @if (Model.TwoFactor)
       {
         <form asp-action="DisableTwoFactorAuthentication"
-              asp-controller="Manage"
+              asp-controller="DisableTwoFactorAuthenction"
               class="form-horizontal"
               method="post"
               role="form">
@@ -84,7 +84,7 @@
       else
       {
         <form asp-action="EnableTwoFactorAuthentication"
-              asp-controller="Manage"
+              asp-controller="EnableTwoFactorAuthentication"
               class="form-horizontal"
               method="post"
               role="form">
@@ -99,7 +99,7 @@
       @if (Model.AuthenticatorKey == null)
       {
         <form asp-action="ResetAuthenticatorKey"
-              asp-controller="Manage"
+              asp-controller="ResetAuthenticatorKey"
               class="form-horizontal"
               method="post"
               role="form">
@@ -112,7 +112,7 @@
       {
         <text>Your key is: @Model.AuthenticatorKey</text>
         <form asp-action="GenerateRecoveryCode"
-              asp-controller="Manage"
+              asp-controller="GenerateRecoveryCode"
               class="form-horizontal"
               method="post"
               role="form">

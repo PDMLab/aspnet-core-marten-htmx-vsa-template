@@ -20,7 +20,7 @@
           @if ((bool)ViewData["ShowRemoveButton"])
           {
             <form asp-action="RemoveLogin"
-                  asp-controller="Manage"
+                  asp-controller="RemoveLogin"
                   class="form-horizontal"
                   method="post"
                   role="form">
@@ -53,7 +53,7 @@
   <h4>Add another service to log in.</h4>
   <hr/>
   <form asp-action="LinkLogin"
-        asp-controller="Manage"
+        asp-controller="ManageLogins"
         class="form-horizontal"
         method="post"
         role="form">

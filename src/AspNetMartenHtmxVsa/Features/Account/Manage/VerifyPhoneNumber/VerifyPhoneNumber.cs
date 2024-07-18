@@ -1,5 +1,5 @@
 using System.ComponentModel.DataAnnotations;
-using AspNetMartenHtmxVsa.Areas.Identity.Data;
+using AspNetMartenHtmxVsa.Features.Account.Manage.ManageAccount;
 using AspNetMartenHtmxVsa.Features.Account.Manage.ManageLogins;
 using AspNetMartenHtmxVsa.Features.Account.Services;
 using Microsoft.AspNetCore.Identity;
@@ -94,8 +94,10 @@ public class VerifyPhoneNumberController : Controller
       if (result.Succeeded)
       {
         await _signInManager.SignInAsync(user, isPersistent: false);
+        // TODO: HTMX response
         return RedirectToAction(
-          nameof(Index),
+          nameof(ManageAccountController.ManageAccount),
+          "ManageAccount",
           new
           {
             Message = ManageMessageId.AddPhoneSuccess

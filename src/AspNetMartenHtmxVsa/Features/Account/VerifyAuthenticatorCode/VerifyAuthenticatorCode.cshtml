@@ -7,7 +7,7 @@
 <h1>@ViewData["Title"].</h1>
 
 <form asp-action="VerifyAuthenticatorCode"
-      asp-controller="Account"
+      asp-controller="VerifyAuthenticatorCode"
       asp-route-returnurl="@ViewData["ReturnUrl"]"
       class="form-horizontal"
       method="post"
@@ -43,7 +43,8 @@
     </div>
   </div>
   <p>
-    <a asp-action="UseRecoveryCode">Lost your authenticator?</a>
+    <a asp-action="UseRecoveryCode"
+       asp-controller="UseRecoveryCode">Lost your authenticator?</a>
   </p>
 </form>
 

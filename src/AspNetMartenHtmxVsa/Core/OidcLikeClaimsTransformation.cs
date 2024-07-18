@@ -1,5 +1,5 @@
 using System.Security.Claims;
-using AspNetMartenHtmxVsa.Areas.Identity.Data;
+using AspNetMartenHtmxVsa.Features.Account;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 

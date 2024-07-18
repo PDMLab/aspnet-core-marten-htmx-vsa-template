@@ -1,5 +1,4 @@
 using System.ComponentModel.DataAnnotations;
-using AspNetMartenHtmxVsa.Areas.Identity.Data;
 using AspNetMartenHtmxVsa.Features.Account.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -85,7 +84,7 @@ public class ResetPasswordController : Controller
     if (user == null)
     {
       // Don't reveal that the user does not exist
-      return RedirectToAction(nameof(ResetPasswordController.ResetPasswordConfirmation), "Account");
+      return RedirectToAction(nameof(ResetPasswordConfirmation), "ResetPassword");
     }
 
     var result = await _userManager.ResetPasswordAsync(
@@ -95,7 +94,7 @@ public class ResetPasswordController : Controller
     );
     if (result.Succeeded)
     {
-      return RedirectToAction(nameof(ResetPasswordController.ResetPasswordConfirmation), "Account");
+      return RedirectToAction(nameof(ResetPasswordConfirmation), "ResetPassword");
     }
 
     AddErrors(result);

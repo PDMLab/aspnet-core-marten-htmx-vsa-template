@@ -1,4 +1,3 @@
-using AspNetMartenHtmxVsa.Areas.Identity.Data;
 using AspNetMartenHtmxVsa.Features.Account.Manage.ManageLogins;
 using AspNetMartenHtmxVsa.Features.Account.Services;
 using Microsoft.AspNetCore.Identity;
@@ -44,7 +43,7 @@ public class RemovePhoneNumberController : Controller
       {
         await _signInManager.SignInAsync(user, isPersistent: false);
         return RedirectToAction(
-          nameof(Index),
+          nameof(RemovePhoneNumber),
           new
           {
             Message = ManageMessageId.RemovePhoneSuccess
@@ -54,7 +53,7 @@ public class RemovePhoneNumberController : Controller
     }
 
     return RedirectToAction(
-      nameof(Index),
+      nameof(RemovePhoneNumber),
       new
       {
         Message = ManageMessageId.Error

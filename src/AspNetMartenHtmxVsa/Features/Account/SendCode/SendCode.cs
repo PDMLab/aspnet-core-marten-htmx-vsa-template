@@ -1,4 +1,3 @@
-using AspNetMartenHtmxVsa.Areas.Identity.Data;
 using AspNetMartenHtmxVsa.Features.Account.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -101,6 +100,7 @@ public class SendCodeController : Controller
     {
       return RedirectToAction(
         nameof(VerifyAuthenticatorCode),
+        "VerifyAuthenticatorCode",
         new
         {
           ReturnUrl = model.ReturnUrl,
@@ -132,6 +132,7 @@ public class SendCodeController : Controller
 
     return RedirectToAction(
       nameof(VerifyCode),
+      "VerifyCode",
       new
       {
         Provider = model.SelectedProvider,
