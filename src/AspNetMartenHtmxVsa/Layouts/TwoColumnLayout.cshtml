@@ -17,6 +17,7 @@
         href="~/css/site.css"
         rel="stylesheet"/>
   <script src="~/lib/htmx.org/dist/htmx.min.js"></script>
+  <script src="~/lib/alpinejs/dist/cdn.js"></script>
 </head>
 <body class="h-full">
 <div>
@@ -476,12 +477,14 @@ To: "-translate-x-full"
              class="hidden lg:block lg:h-6 lg:w-px lg:bg-gray-900/10"></div>
 
         <!-- Profile dropdown -->
-        <div class="relative">
+        <div class="relative"
+             x-data="{open:false}">
           <button aria-expanded="false"
                   aria-haspopup="true"
                   class="-m-1.5 flex items-center p-1.5"
                   id="user-menu-button"
-                  type="button">
+                  type="button"
+                  x-on:click="open=!open">
             <span class="sr-only">Open user menu</span>
             <img alt=""
                  class="h-8 w-8 rounded-full bg-gray-50"
@@ -511,10 +514,12 @@ To: "-translate-x-full"
           To: "transform opacity-0 scale-95"
           -->
           <div aria-labelledby="user-menu-button"
+               x-on:click.outside="open=false"
                aria-orientation="vertical"
                class="absolute right-0 z-10 mt-2.5 w-32 origin-top-right rounded-md bg-white py-2 shadow-lg ring-1 ring-gray-900/5 focus:outline-none"
                role="menu"
-               tabindex="-1">
+               tabindex="-1"
+               x-show="open">
             <!-- Active: "bg-gray-50", Not Active: "" -->
             <a class="block px-3 py-1 text-sm leading-6 text-gray-900"
                href="#"
