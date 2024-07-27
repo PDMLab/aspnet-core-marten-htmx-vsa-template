@@ -29,10 +29,7 @@ public class LogOffController : Controller
   }
 
 
-  //
-  // POST: /Account/LogOff
-  [HttpPost]
-  [ValidateAntiForgeryToken]
+  [HttpGet("/signout")]
   public async Task<IActionResult> LogOff()
   {
     await _signInManager.SignOutAsync();
