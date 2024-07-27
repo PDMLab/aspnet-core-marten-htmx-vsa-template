@@ -10,7 +10,7 @@ module.exports = {
   plugins: [
     // eslint-disable-next-line @typescript-eslint/no-var-requires
     require("@tailwindcss/forms")({
-      strategy: "class",
+      // strategy: "class",
     }),
     require("tailwindcss-debug-screens"),
   ],

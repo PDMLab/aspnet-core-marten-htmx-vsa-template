@@ -1,11 +1,14 @@
-using AspNetMartenHtmxVsa.Areas.Identity.Data;
+using AspNetMartenHtmxVsa.Features.Account;
 using Microsoft.AspNetCore.Identity;
 
 namespace AspNetMartenHtmxVsa.Features.GetUserEmailStore;
 
 public static class GetUserEmailStoreHelper
 {
-  public static IUserEmailStore<AppUser> GetEmailStore(UserManager<AppUser> userManager, IUserStore<AppUser> userStore)
+  public static IUserEmailStore<AppUser> GetEmailStore(
+    UserManager<AppUser> userManager,
+    IUserStore<AppUser> userStore
+  )
   {
     if (!userManager.SupportsUserEmail)
     {

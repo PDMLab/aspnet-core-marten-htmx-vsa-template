@@ -1,4 +1,4 @@
-namespace AspNetMartenHtmxVsa.Features.Subscribe;
+namespace AspNetMartenHtmxVsa.Features.Subscriptions.Subscribe;
 
 public record Subscribed(
   string CompanyName,

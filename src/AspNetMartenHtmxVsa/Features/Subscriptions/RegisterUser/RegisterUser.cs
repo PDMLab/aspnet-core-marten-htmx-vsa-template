@@ -1,10 +1,10 @@
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.InteropServices.JavaScript;
 using System.Security.Claims;
-using AspNetMartenHtmxVsa.Areas.Identity.Data;
 using AspNetMartenHtmxVsa.Core;
-using AspNetMartenHtmxVsa.Features.Subscribe;
+using AspNetMartenHtmxVsa.Features.Account;
 using AspNetMartenHtmxVsa.Features.Subscriptions.SetCompanyNameFromUserRegistration;
+using AspNetMartenHtmxVsa.Features.Subscriptions.Subscribe;
 using Easy_Password_Validator;
 using Easy_Password_Validator.Models;
 using Marten.Events.Aggregation;
@@ -202,10 +202,10 @@ public class RegisterUserHandler
       var tenantId = Guid.NewGuid();
       var tenantIdString = tenantId.ToString();
 
-      
+
       var password = registration.Password!;
 
-      
+
       var user = new AppUser
       {
         FirstName = firstName,
@@ -277,7 +277,6 @@ public class RegisterUserHandler
           subscriptionId
         );
 
-      
 
         // tenant store -> organization stream
         var companyNameSetFromUserRegistration = new CompanyNameSetFromUserRegistration(companyName);

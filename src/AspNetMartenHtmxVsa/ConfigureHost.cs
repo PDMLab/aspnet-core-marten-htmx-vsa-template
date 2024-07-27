@@ -1,7 +1,8 @@
-using AspNetMartenHtmxVsa.Areas.Identity.Data;
 using AspNetMartenHtmxVsa.Configuration;
 using AspNetMartenHtmxVsa.Core;
 using AspNetMartenHtmxVsa.EventSourcing;
+using AspNetMartenHtmxVsa.Features.Account;
+using AspNetMartenHtmxVsa.Features.Account.Services;
 using Marten;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
@@ -36,6 +37,9 @@ public class ConfigureHost
               .AddEntityFrameworkStores<AppDbContext>();
             
             services.AddTransient<IClaimsTransformation, OidcLikeClaimsTransformation>();
+            
+            services.AddTransient<IEmailSender, AuthMessageSender>();
+            services.AddTransient<ISmsSender, AuthMessageSender>();
 
 
             services.AddMarten(
