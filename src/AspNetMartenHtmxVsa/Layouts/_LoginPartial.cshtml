@@ -2,6 +2,7 @@
 @inject SignInManager<AppUser> SignInManager
 @inject UserManager<AppUser> UserManager
 
+<div class="bg-red-200">Login Partial</div>
 <ul class="navbar-nav">
   @if (SignInManager.IsSignedIn(User))
   {
@@ -30,14 +31,15 @@
   else
   {
     <li class="nav-item">
-      <a asp-area="Identity"
-         asp-page="/Account/Register"
+      <a asp-action="Register"
+         asp-controller="Register"
          class="nav-link text-dark"
          id="register">Register</a>
     </li>
     <li class="nav-item">
-      <a asp-area="Identity"
-         asp-page="/Account/Login"
+      <a asp-action="Login"
+         asp-controller="Login"
+
          class="nav-link text-dark"
          id="login">Login</a>
     </li>

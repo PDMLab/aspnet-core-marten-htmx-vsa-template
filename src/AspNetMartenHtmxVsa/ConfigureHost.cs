@@ -35,6 +35,13 @@ public class ConfigureHost
 
             services.AddDefaultIdentity<AppUser>(options => options.SignIn.RequireConfirmedAccount = false)
               .AddEntityFrameworkStores<AppDbContext>();
+
+            services.ConfigureApplicationCookie(
+              options =>
+              {
+                options.LoginPath = "/Login/Login";
+              }
+            );
             
             services.AddTransient<IClaimsTransformation, OidcLikeClaimsTransformation>();
             
@@ -78,6 +85,7 @@ public class ConfigureHost
                 routeBuilder.MapControllers();
                 routeBuilder.MapRazorPages();
                 routeBuilder.MapDefaultControllerRoute();
+                routeBuilder.MapFallbackToController("GetHome", "GetHome");
               }
             );
           }
