@@ -5,6 +5,7 @@ using AspNetMartenHtmxVsa.Features.Account;
 using AspNetMartenHtmxVsa.Features.Account.Services;
 using Marten;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.EntityFrameworkCore;
@@ -33,16 +34,13 @@ public class ConfigureHost
               options => { options.UseNpgsql(identityTestConnectionString); }
             );
 
-            services.AddDefaultIdentity<AppUser>(options => options.SignIn.RequireConfirmedAccount = false)
-              .AddEntityFrameworkStores<AppDbContext>();
+            services
+              .AddIdentity<AppUser, IdentityRole>(
+                options => options.SignIn.RequireConfirmedAccount = false
+              )
+              .AddEntityFrameworkStores<AppDbContext>()
+              .AddDefaultTokenProviders();
 
-            services.ConfigureApplicationCookie(
-              options =>
-              {
-                options.LoginPath = "/Login/Login";
-              }
-            );
-            
             services.AddTransient<IClaimsTransformation, OidcLikeClaimsTransformation>();
             
             services.AddTransient<IEmailSender, AuthMessageSender>();

@@ -46,7 +46,7 @@ public class LoginController : Controller
 
   //
   // GET: /Account/Login
-  [HttpGet]
+  [HttpGet("/Account/Login")]
   [AllowAnonymous]
   public IActionResult Login(
     string returnUrl = null
@@ -59,11 +59,11 @@ public class LoginController : Controller
 
   //
   // POST: /Account/Login
-  [HttpPost]
+  [HttpPost("/Account/Login")]
   [AllowAnonymous]
   // [ValidateAntiForgeryToken]
   public async Task<IActionResult> Login(
-    LoginViewModel model,
+    [FromForm] LoginViewModel model,
     string returnUrl = null
   )
   {
