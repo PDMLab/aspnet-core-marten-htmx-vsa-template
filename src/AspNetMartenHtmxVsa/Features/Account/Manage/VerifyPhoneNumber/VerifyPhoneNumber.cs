@@ -2,6 +2,7 @@ using System.ComponentModel.DataAnnotations;
 using AspNetMartenHtmxVsa.Features.Account.Manage.ManageAccount;
 using AspNetMartenHtmxVsa.Features.Account.Manage.ManageLogins;
 using AspNetMartenHtmxVsa.Features.Account.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,6 +18,7 @@ public class VerifyPhoneNumberViewModel
   public string PhoneNumber { get; set; }
 }
 
+[Authorize]
 public class VerifyPhoneNumberController : Controller
 {
   private readonly UserManager<AppUser> _userManager;
@@ -47,9 +49,7 @@ public class VerifyPhoneNumberController : Controller
   }
 
 
-  //
-  // GET: /Manage/VerifyPhoneNumber
-  [HttpGet]
+  [HttpGet("/account/verify-phone-number")]
   public async Task<IActionResult> VerifyPhoneNumber(
     string phoneNumber
   )
@@ -67,9 +67,7 @@ public class VerifyPhoneNumberController : Controller
       );
   }
 
-  //
-  // POST: /Manage/VerifyPhoneNumber
-  [HttpPost]
+  [HttpPost("/account/verify-phone-number")]
   [ValidateAntiForgeryToken]
   public async Task<IActionResult> VerifyPhoneNumber(
     VerifyPhoneNumberViewModel model

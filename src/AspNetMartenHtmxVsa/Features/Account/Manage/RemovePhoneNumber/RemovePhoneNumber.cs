@@ -1,10 +1,12 @@
 using AspNetMartenHtmxVsa.Features.Account.Manage.ManageLogins;
 using AspNetMartenHtmxVsa.Features.Account.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AspNetMartenHtmxVsa.Features.Account.Manage.RemovePhoneNumber;
 
+[Authorize]
 public class RemovePhoneNumberController : Controller
 {
   private readonly UserManager<AppUser> _userManager;
@@ -30,8 +32,7 @@ public class RemovePhoneNumberController : Controller
 
 
   //
-  // GET: /Manage/RemovePhoneNumber
-  [HttpPost]
+  [HttpPost("/account/remove-phone")]
   [ValidateAntiForgeryToken]
   public async Task<IActionResult> RemovePhoneNumber()
   {

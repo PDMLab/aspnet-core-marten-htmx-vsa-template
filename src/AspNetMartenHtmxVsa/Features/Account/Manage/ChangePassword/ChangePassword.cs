@@ -3,6 +3,7 @@ using AspNetMartenHtmxVsa.Features.Account;
 using AspNetMartenHtmxVsa.Features.Account.Manage.ManageAccount;
 using AspNetMartenHtmxVsa.Features.Account.Manage.ManageLogins;
 using AspNetMartenHtmxVsa.Features.Account.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -31,6 +32,7 @@ public class ChangePasswordViewModel
   public string ConfirmPassword { get; set; }
 }
 
+[Authorize]
 public class ChangePasswordController : Controller
 {
   private readonly UserManager<AppUser> _userManager;
@@ -55,17 +57,13 @@ public class ChangePasswordController : Controller
   }
 
 
-  //
-  // GET: /Manage/ChangePassword
-  [HttpGet]
+  [HttpGet("/account/changepassword")]
   public IActionResult ChangePassword()
   {
     return View("~/Features/Account/Manage/ChangePassword/ChangePassword.cshtml");
   }
 
-  //
-  // POST: /Manage/ChangePassword
-  [HttpPost]
+  [HttpPost("/account/changepassword")]
   [ValidateAntiForgeryToken]
   public async Task<IActionResult> ChangePassword(
     ChangePasswordViewModel model

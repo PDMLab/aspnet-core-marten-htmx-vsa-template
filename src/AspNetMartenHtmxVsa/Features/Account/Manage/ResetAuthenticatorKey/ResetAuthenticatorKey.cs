@@ -1,9 +1,11 @@
 using AspNetMartenHtmxVsa.Features.Account.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AspNetMartenHtmxVsa.Features.Account.Manage.ResetAuthenticatorKey;
 
+[Authorize]
 public class ResetAuthenticatorKeyController : Controller
 {
   private readonly UserManager<AppUser> _userManager;
@@ -28,9 +30,7 @@ public class ResetAuthenticatorKeyController : Controller
   }
 
 
-  //
-  // POST: /Manage/ResetAuthenticatorKey
-  [HttpPost]
+  [HttpPost("/account/reset-authenticator-key")]
   [ValidateAntiForgeryToken]
   public async Task<IActionResult> ResetAuthenticatorKey()
   {

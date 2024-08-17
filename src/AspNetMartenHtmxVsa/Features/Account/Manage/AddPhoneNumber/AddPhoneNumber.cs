@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using AspNetMartenHtmxVsa.Features.Account.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -13,6 +14,7 @@ public class AddPhoneNumberViewModel
   public string PhoneNumber { get; set; }
 }
 
+[Authorize]
 public class AddPhoneNumberController : Controller
 {
   private readonly UserManager<AppUser> _userManager;
@@ -36,14 +38,11 @@ public class AddPhoneNumberController : Controller
     _logger = loggerFactory.CreateLogger<AddPhoneNumberController>();
   }
 
+  [HttpGet("/account/add-phone")]
+  public IActionResult AddPhoneNumber() =>
+    View("~/Features/Account/Manage/AddPhoneNumber/AddPhoneNumber.cshtml");
 
-  //
-  // GET: /Manage/AddPhoneNumber
-  public IActionResult AddPhoneNumber() => View("~/Features/Account/Manage/AddPhoneNumber/AddPhoneNumber.cshtml");
-
-  //
-  // POST: /Manage/AddPhoneNumber
-  [HttpPost]
+  [HttpPost("/account/add-phone")]
   [ValidateAntiForgeryToken]
   public async Task<IActionResult> AddPhoneNumber(
     AddPhoneNumberViewModel model

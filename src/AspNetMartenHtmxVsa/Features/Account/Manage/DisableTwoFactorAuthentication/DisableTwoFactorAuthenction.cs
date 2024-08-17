@@ -1,9 +1,11 @@
 using AspNetMartenHtmxVsa.Features.Account.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AspNetMartenHtmxVsa.Features.Account.Manage.DisableTwoFactorAuthentication;
 
+[Authorize]
 public class DisableTwoFactorAuthenctionController : Controller
 {
   private readonly UserManager<AppUser> _userManager;
@@ -28,8 +30,7 @@ public class DisableTwoFactorAuthenctionController : Controller
   }
 
   //
-  // POST: /Manage/DisableTwoFactorAuthentication
-  [HttpPost]
+  [HttpPost("/account/disable-two-factor")]
   [ValidateAntiForgeryToken]
   public async Task<IActionResult> DisableTwoFactorAuthentication()
   {

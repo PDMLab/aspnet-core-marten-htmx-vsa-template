@@ -1,6 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using AspNetMartenHtmxVsa.Features.Account.Manage.ManageLogins;
 using AspNetMartenHtmxVsa.Features.Account.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -24,6 +25,7 @@ public class SetPasswordViewModel
   public string ConfirmPassword { get; set; }
 }
 
+[Authorize]
 public class SetPasswordController : Controller
 {
   private readonly UserManager<AppUser> _userManager;
@@ -48,16 +50,13 @@ public class SetPasswordController : Controller
   }
 
   //
-  // GET: /Manage/SetPassword
-  [HttpGet]
+  [HttpGet("/account/set-password")]
   public IActionResult SetPassword()
   {
     return View("~/Features/Account/Manage/SetPassword/SetPassword.cshtml");
   }
 
-  //
-  // POST: /Manage/SetPassword
-  [HttpPost]
+  [HttpPost("/account/set-password")]
   [ValidateAntiForgeryToken]
   public async Task<IActionResult> SetPassword(
     SetPasswordViewModel model

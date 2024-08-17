@@ -1,9 +1,11 @@
 using AspNetMartenHtmxVsa.Features.Account.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AspNetMartenHtmxVsa.Features.Account.Manage.EnableTwoFactorAuthentication;
 
+[Authorize]
 public class EnableTwoFactorAuthenticationController : Controller
 {
   private readonly UserManager<AppUser> _userManager;
@@ -28,9 +30,7 @@ public class EnableTwoFactorAuthenticationController : Controller
   }
 
 
-  //
-  // POST: /Manage/EnableTwoFactorAuthentication
-  [HttpPost]
+  [HttpPost("/account/enable-twofactor")]
   [ValidateAntiForgeryToken]
   public async Task<IActionResult> EnableTwoFactorAuthentication()
   {

@@ -1,5 +1,6 @@
 using AspNetMartenHtmxVsa.Features.Account.Services;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -24,6 +25,7 @@ public enum ManageMessageId
   Error
 }
 
+[Authorize]
 public class ManageLoginsController : Controller
 {
   private readonly UserManager<AppUser> _userManager;
@@ -47,8 +49,7 @@ public class ManageLoginsController : Controller
     _logger = loggerFactory.CreateLogger<ManageLoginsController>();
   }
 
-  //GET: /Manage/ManageLogins
-  [HttpGet]
+  [HttpGet("/account/manage-logins")]
   public async Task<IActionResult> ManageLogins(
     ManageMessageId? message = null
   )
@@ -80,9 +81,7 @@ public class ManageLoginsController : Controller
   }
 
 
-  //
-  // POST: /Manage/LinkLogin
-  [HttpPost]
+  [HttpPost("/account/manage-logins")]
   [ValidateAntiForgeryToken]
   public IActionResult LinkLogin(
     string provider
@@ -98,9 +97,7 @@ public class ManageLoginsController : Controller
     return Challenge(properties, provider);
   }
 
-  //
-  // GET: /Manage/LinkLoginCallback
-  [HttpGet]
+  [HttpGet("/account/manage-logins/login-callback")]
   public async Task<ActionResult> LinkLoginCallback()
   {
     var user = await GetCurrentUserAsync();

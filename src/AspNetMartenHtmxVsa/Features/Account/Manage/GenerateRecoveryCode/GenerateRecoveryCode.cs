@@ -1,4 +1,5 @@
 using AspNetMartenHtmxVsa.Features.Account.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Build.Framework;
@@ -11,6 +12,7 @@ public class DisplayRecoveryCodesViewModel
   [Required] public IEnumerable<string> Codes { get; set; }
 }
 
+[Authorize]
 public class GenerateRecoveryCodeController : Controller
 {
   private readonly UserManager<AppUser> _userManager;
@@ -35,9 +37,7 @@ public class GenerateRecoveryCodeController : Controller
   }
 
 
-  //
-  // POST: /Manage/GenerateRecoveryCode
-  [HttpPost]
+  [HttpPost("/account/generate-recovery-code")]
   [ValidateAntiForgeryToken]
   public async Task<IActionResult> GenerateRecoveryCode()
   {

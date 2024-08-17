@@ -1,5 +1,6 @@
 using AspNetMartenHtmxVsa.Features.Account.Manage.ManageLogins;
 using AspNetMartenHtmxVsa.Features.Account.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,6 +12,7 @@ public class RemoveLoginViewModel
   public string ProviderKey { get; set; }
 }
 
+[Authorize]
 public class RemoveLoginController : Controller
 {
   private readonly UserManager<AppUser> _userManager;
@@ -36,8 +38,7 @@ public class RemoveLoginController : Controller
 
 
   //
-  // POST: /Manage/RemoveLogin
-  [HttpPost]
+  [HttpPost("/account/remove-login")]
   [ValidateAntiForgeryToken]
   public async Task<IActionResult> RemoveLogin(
     RemoveLoginViewModel account

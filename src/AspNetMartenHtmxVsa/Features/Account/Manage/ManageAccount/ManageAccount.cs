@@ -1,5 +1,6 @@
 using AspNetMartenHtmxVsa.Features.Account.Manage.ManageLogins;
 using AspNetMartenHtmxVsa.Features.Account.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -20,6 +21,7 @@ public class IndexViewModel
   public string AuthenticatorKey { get; set; }
 }
 
+[Authorize]
 public class ManageAccountController : Controller
 {
   private readonly UserManager<AppUser> _userManager;
@@ -45,8 +47,7 @@ public class ManageAccountController : Controller
 
 
 //
-// GET: /Manage/Index
-  [HttpGet("/Account/Manage")]
+  [HttpGet("/account/manage")]
   public async Task<IActionResult> ManageAccount(
     ManageMessageId? message = null
   )
