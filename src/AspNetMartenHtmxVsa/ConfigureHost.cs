@@ -14,6 +14,8 @@ namespace AspNetMartenHtmxVsa;
 
 public class ConfigureHost
 {
+  public static IServiceCollection Services { get; private set; } = new ServiceCollection();
+  
   public static IHostBuilder GetHostBuilder(
     IConfigurationRoot configuration,
     Action<IServiceCollection>? configureServices = null
@@ -65,6 +67,7 @@ public class ConfigureHost
               .AddRazorRuntimeCompilation();
             services.AddRazorPages();
             configureServices?.Invoke(services);
+            Services = services;
           }
         );
         builder.Configure(
